@@ -1,0 +1,20 @@
+{
+    "name": "devmi/datatables",
+    "description": "Super useful package for managing your database from an admin panel.",
+    "authors": [
+        {
+            "name": "Mohamed Miloudi",
+            "email": "milou0104@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Devmi\\Datatables\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0.0",
+        "illuminate/database": ">=5.0",
+        "illuminate/support": ">=5.0"
+    }
+}
