@@ -13,7 +13,12 @@ class DatatablesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->loadRoutesFrom( __DIR__ . '/routes.php');
+        $this->loadViewsFrom(__DIR__ . '/Views', 'Datatable');
+
+        $this->publishes([
+            __DIR__ . '/Views/assets/js/components/' => resource_path('assets/js/vendor/devmi')
+        ], 'devmi');
     }
 
     /**

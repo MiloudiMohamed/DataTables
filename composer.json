@@ -12,6 +12,12 @@
             "Devmi\\Datatables\\": "src/"
         }
     },
+    "extra": {
+    "laravel": {
+        "providers": [
+            "Devmi\\Datatables\\DatatablesServiceProvider"
+        ]
+    },
     "require": {
         "php": ">=7.0.0",
         "illuminate/database": ">=5.0",
