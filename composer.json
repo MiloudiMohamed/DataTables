@@ -1,6 +1,8 @@
 {
     "name": "devmi/datatables",
     "description": "Super useful package for managing your database from an admin panel.",
+    "keywords": ["laravel", "vue", "datatable", "admin panel"],
+    "license": "MIT",
     "authors": [
         {
             "name": "Mohamed Miloudi",
