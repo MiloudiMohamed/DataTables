@@ -6,7 +6,7 @@ Useful package for managing your database from an admin panel.
 From the command line, run:
 
 ```bash
-composer require devmi/datatable
+composer require devmi/datatables
 ```
 
 ### Step 2: Service Provider
@@ -80,6 +80,22 @@ Now you can visit `www.domain.com/admin/users`
 
 
 - Repeat **step 3** & **step 4** for your other model.
+
+### Notice
+You must to install ES6 spread operator in order to use this package properly
+```
+npm install --save-dev babel-plugin-transform-object-rest-spread
+```
+then, create .babelrc file from you command line
+
+```
+echo '{ "plugins": ["transform-object-rest-spread"] }' > .babelrc
+```
+
+Now compile your asset running
+```
+npm run dev
+```
 
 ## Extra
 
