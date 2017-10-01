@@ -4,7 +4,7 @@ namespace Devmi\Datatables;
 
 use Illuminate\Support\ServiceProvider;
 
-class DatatablesServiceProvider extends ServiceProvider
+class DataTableServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.

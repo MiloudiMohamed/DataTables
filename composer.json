@@ -15,7 +15,7 @@
     "extra": {
     "laravel": {
         "providers": [
-            "Devmi\\Datatables\\DatatablesServiceProvider"
+            "Devmi\\Datatables\\DataTableServiceProvider"
         ]
     },
     "require": {
