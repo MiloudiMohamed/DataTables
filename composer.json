@@ -13,14 +13,16 @@
         }
     },
     "extra": {
-    "laravel": {
-        "providers": [
-            "Devmi\\Datatables\\DataTableServiceProvider"
-        ]
+        "laravel": {
+            "providers": [
+                "Devmi\\Datatables\\DataTableServiceProvider"
+            ]
+        }
     },
     "require": {
         "php": ">=7.0.0",
         "illuminate/database": ">=5.0",
         "illuminate/support": ">=5.0"
     }
+
 }
