@@ -1,28 +1,28 @@
 <template>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            {{ response.table }}
+    <div class="card">
+        <div class="card-header">
+            <strong>{{ response.table }} table</strong>
             <a href="#" class="pull-right" v-if="response.allow.creation" @click.prevent="creating.active = !creating.active">
                 {{ creating.active ? 'Cancel' : 'New record' }}
             </a>
         </div>
 
-        <div class="panel-body">
+        <div class="card-body">
             <div class="well" v-if="creating.active">
                 <form action="#" class="form-horizontal" @submit.prevent="store">
-                    <div class="form-group" v-for="column in response.updatable" :class="{ 'has-error': creating.errors[column] }">
-                        <label class="col-md-3 control-label" :for="column">{{ column }}</label>
+                    <div class="form-group" v-for="column in response.updatable">
+                        <label class="col-md-3" :for="column">{{ column }}</label>
                         <div class="col-md-6">
-                            <input type="text" :id="column" class="form-control" v-model="creating.form[column]">
-                            <span class="help-block" v-if="creating.errors[column]">
+                            <input type="text" :id="column" class="form-control" :class="{ 'is-invalid': creating.errors[column] }" v-model="creating.form[column]">
+                            <div class="invalid-feedback" v-if="creating.errors[column]">
                                 <strong>{{ creating.errors[column][0] }}</strong>
-                            </span>
+                            </div>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <div class="col-md-6 col-md-offset-3">
-                            <button type="submit" class="btn btn-default">Create</button>
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-primary">Create</button>
                         </div>
                     </div>
                 </form>
@@ -49,10 +49,12 @@
                     </div>
                     <div class="form-group col-md-6">
                         <div class="input-group">
-                            <input type="text" id="search" v-model="search.value" class="form-control">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="submit">Search</button>
-                            </span>
+                            <div class="input-group">
+                                <input type="text" id="search" v-model="search.value" class="form-control">
+                                <span class="input-group-prepend">
+                                    <button class="btn btn-primary" type="submit">Search</button>
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -73,9 +75,9 @@
                 </div>
             </div>
 
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
+            <div class=" table-responsive ">
+                <table class="table table-bordered">
+                    <thead class="thead-light">
                         <tr>
                             <th v-for="column in response.displayable">
                                 <span class="sortable" @click="sortBy(column)">{{ column }}</span>
@@ -93,11 +95,11 @@
                         <tr v-for="record in filteredRecords">
                             <td v-for="columnValue, column in record">
                                 <template v-if="editing.id === record.id && isUpdatable(column)">
-                                    <div class="form-group" :class="{ 'has-error': editing.errors[column] }">
-                                        <input type="text" class="form-control" :value="columnValue" v-model="editing.form[column]">
-                                        <span class="help-block" v-if="editing.errors[column]">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" :class="{ 'is-invalid': editing.errors[column] }" v-model="editing.form[column]">
+                                        <div class="invalid-feedback" v-if="editing.errors[column]">
                                             <strong>{{ editing.errors[column][0] }}</strong>
-                                        </span>
+                                        </div>
                                     </div>
                                 </template>
                                 <template v-else>
@@ -219,6 +221,7 @@
             },
             store () {
                 axios.post(`${this.endpoint}`, this.creating.form).then(() => {
+                    console.log(this.creating.form)
                     this.getRecords().then(() => {
                         this.creating.active = false
                         this.creating.form = {}
