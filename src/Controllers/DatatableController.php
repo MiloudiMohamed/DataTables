@@ -110,10 +110,10 @@ abstract class DatatableController extends Controller
      */
     public function store(Request $request)
     {
+
         if (!$this->allowCreation) {
             return;
         }
-
         $this->builder->create($request->only($this->getUpdatableColumns()));
     }
 
